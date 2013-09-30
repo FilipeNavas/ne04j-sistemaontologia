@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>17.16. Unique Indexing</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="The Neo4j Manual v2.0.0-M01" /><link rel="up" href="rest-api.html" title="Chapter 17. REST API" /><link rel="prev" href="rest-api-indexes.html" title="17.15. Legacy indexing" /><link rel="next" href="rest-api-auto-indexes.html" title="17.17. Legacy Automatic Indexes" /><link rel="preface" href="preface.html" title="Preface" /><link rel="part" href="introduction.html" title="Part I. Introduction" /><link rel="chapter" href="introduction-highlights.html" title="Chapter 1. Neo4j Highlights" /><link rel="chapter" href="graphdb-concepts.html" title="Chapter 2. Graph Database Concepts" /><link rel="chapter" href="graphdb-neo4j.html" title="Chapter 3. The Neo4j Graph Database" /><link rel="part" href="tutorials.html" title="Part II. Tutorials" /><link rel="chapter" href="tutorials-java-embedded.html" title="Chapter 4. Using Neo4j embedded in Java applications" /><link rel="chapter" href="tutorials-rest.html" title="Chapter 5. Neo4j Remote Client Libraries" /><link rel="chapter" href="tutorial-traversal.html" title="Chapter 6. The Traversal Framework" /><link rel="chapter" href="data-modeling-examples.html" title="Chapter 7. Data Modeling Examples" /><link rel="chapter" href="languages.html" title="Chapter 8. Languages" /><link rel="chapter" href="server-extending.html" title="Chapter 9. Extending the Neo4j Server" /><link rel="part" href="reference-documentation.html" title="Part III. Reference" /><link rel="chapter" href="capabilities.html" title="Chapter 10. Capabilities" /><link rel="chapter" href="transactions.html" title="Chapter 11. Transaction Management" /><link rel="chapter" href="import.html" title="Chapter 12. Data Import" /><link rel="chapter" href="indexing.html" title="Chapter 13. Legacy Indexing" /><link rel="chapter" href="cypher-query-lang.html" title="Chapter 14. Cypher Query Language" /><link rel="chapter" href="graph-algo.html" title="Chapter 15. Graph Algorithms" /><link rel="chapter" href="server.html" title="Chapter 16. Neo4j Server" /><link rel="chapter" href="rest-api.html" title="Chapter 17. REST API" /><link rel="part" href="operations.html" title="Part IV. Operations" /><link rel="chapter" href="deployment.html" title="Chapter 18. Installation &amp; Deployment" /><link rel="chapter" href="embedded-configuration.html" title="Chapter 19. Configuration &amp; Performance" /><link rel="chapter" href="ha.html" title="Chapter 20. High Availability" /><link rel="chapter" href="operations-backup.html" title="Chapter 21. Backup" /><link rel="chapter" href="operations-security.html" title="Chapter 22. Security" /><link rel="chapter" href="operations-monitoring.html" title="Chapter 23. Monitoring" /><link rel="part" href="tools.html" title="Part V. Tools" /><link rel="chapter" href="tools-webadmin.html" title="Chapter 24. Web Administration" /><link rel="chapter" href="shell.html" title="Chapter 25. Neo4j Shell" /><link rel="part" href="community.html" title="Part VI. Community" /><link rel="chapter" href="community-support.html" title="Chapter 26. Community Support" /><link rel="chapter" href="community-contributing.html" title="Chapter 27. Contributing to Neo4j" /><link rel="appendix" href="manpages.html" title="Appendix A. Manpages" /><link rel="refentry" href="re01.html" title="neo4j" /><link rel="refentry" href="re02.html" title="neo4j-shell" /><link rel="refentry" href="re03.html" title="neo4j-backup" /><link rel="appendix" href="questions.html" title="Appendix B. Questions &amp; Answers" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-node-create" title="17.16.1. Get or create unique node (create)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-node-existing" title="17.16.2. Get or create unique node (existing)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-create-a-unique-node-or-return-fail-create" title="17.16.3. Create a unique node or return fail (create)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-create-a-unique-node-or-return-fail-fail" title="17.16.4. Create a unique node or return fail (fail)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-relationship-create" title="17.16.5. Get or create unique relationship (create)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-relationship-existing" title="17.16.6. Get or create unique relationship (existing)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-create-a-unique-relationship-or-return-fail-create" title="17.16.7. Create a unique relationship or return fail (create)" /><link rel="subsection" href="rest-api-unique-indexes.html#rest-api-create-a-unique-relationship-or-return-fail-fail" title="17.16.8. Create a unique relationship or return fail (fail)" /><link rel="copyright" href="ln-idp1118768.html" title="License: Creative Commons 3.0" />
+
+
+<!-- favicon -->
+
+<link rel="shortcut icon" href="http://neo4j.org/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="http://neo4j.org/favicon.ico" type="image/x-icon" />
+
+<!-- style -->
+
+<link href="css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="css/shCoreEclipse.css" rel="stylesheet" type="text/css" />
+<link href="css/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+<link href="css/neo.css" rel="stylesheet" type="text/css" />
+
+<!-- Syntax Highlighter -->
+
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shBrushJava.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushBash.js"></script>
+<script type="text/javascript" src="js/shBrushPlain.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript" src="js/shBrushGroovy.js"></script>
+<script type="text/javascript" src="js/shBrushCypher.js"></script>
+<script type="text/javascript" src="js/shBrushScala.js"></script>
+<script type="text/javascript" src="js/shBrushSql.js"></script>
+<script type="text/javascript" src="js/shBrushPython.js"></script>
+<script type="text/javascript" src="js/shBrushProperties.js"></script>
+
+<!-- activate when needed
+<script type="text/javascript" src="js/shBrushRuby.js"></script>
+<script type="text/javascript" src="js/shBrushCSharp.js"></script>
+-->
+ 
+<script type="text/javascript">
+  SyntaxHighlighter.defaults['tab-size'] = 4;
+  SyntaxHighlighter.defaults['gutter'] = false;
+  SyntaxHighlighter.defaults['toolbar'] = false;
+  SyntaxHighlighter.all()
+</script>
+
+<!-- JQuery -->
+
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+
+<!-- Replace SVG for browsers that lack support. -->
+<script type="text/javascript" src="js/svgreplacer.js"></script>
+
+<!-- Image Scaler -->
+
+<script type="text/javascript" src="js/imagescaler.js"></script>
+
+<!-- Table Styler -->
+
+<script type="text/javascript" src="js/tablestyler.js"></script>
+
+<!-- Version -->
+
+<script type="text/javascript" src="js/version.js"></script>
+
+<!-- Offline Sidebar -->
+
+<script type="text/javascript" src="js/sidebar.js"></script>
+
+
+<div xmlns="" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">The Neo4j Manual</a></span> &gt; <span class="breadcrumb-link"><a href="reference-documentation.html">Reference</a></span> &gt; <span class="breadcrumb-link"><a href="rest-api.html">REST API</a></span> &gt; <span class="breadcrumb-node">Unique Indexing</span></div></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="rest-api-indexes.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="rest-api-auto-indexes.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="rest-api-unique-indexes"></a>17.16. Unique Indexing</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-node-create">17.16.1. Get or create unique node (create)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-node-existing">17.16.2. Get or create unique node (existing)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-create-a-unique-node-or-return-fail-create">17.16.3. Create a unique node or return fail (create)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-create-a-unique-node-or-return-fail-fail">17.16.4. Create a unique node or return fail (fail)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-relationship-create">17.16.5. Get or create unique relationship (create)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-get-or-create-unique-relationship-existing">17.16.6. Get or create unique relationship (existing)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-create-a-unique-relationship-or-return-fail-create">17.16.7. Create a unique relationship or return fail (create)</a></span></dt><dt><span class="section"><a href="rest-api-unique-indexes.html#rest-api-create-a-unique-relationship-or-return-fail-fail">17.16.8. Create a unique relationship or return fail (fail)</a></span></dt></dl></div><p>For uniqueness enforcements, there are two modes:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+URL Parameter <code class="literal">unique=get_or_create</code>: Create a new node/relationship and index it if no existing one can be found. If an existing node/relationship is found, discard the sent data and return the existing node/relationship.
+</li><li class="listitem">
+URL Parameter <code class="literal">unique=create_or_fail</code>: Create a new node/relationship if no existing one can be found in the index. If an existing node/relationship is found, return a conflict error.
+</li></ul></div><p>For more information, see <a class="xref" href="transactions-unique-nodes.html" title="11.6. Creating unique nodes">Section 11.6, “Creating unique nodes”</a>.</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-get-or-create-unique-node-create"></a>17.16.1. Get or create unique node (create)</h3></div></div></div><p>The node is created if it doesn’t exist in the unique index already.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/node/people?uniqueness=get_or_create</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Tobias",
+  "properties" : {
+    "name" : "Tobias",
+    "sequence" : 1
+  }
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">201:</code></strong></span> <code class="literal">Created</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Location:</code></strong></span> <code class="literal">http://localhost:7474/db/data/index/node/people/name/Tobias/30</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "outgoing_relationships" : "http://localhost:7474/db/data/node/30/relationships/out",
+  "labels" : "http://localhost:7474/db/data/node/30/labels",
+  "all_typed_relationships" : "http://localhost:7474/db/data/node/30/relationships/all/{-list|&amp;|types}",
+  "traverse" : "http://localhost:7474/db/data/node/30/traverse/{returnType}",
+  "self" : "http://localhost:7474/db/data/node/30",
+  "property" : "http://localhost:7474/db/data/node/30/properties/{key}",
+  "outgoing_typed_relationships" : "http://localhost:7474/db/data/node/30/relationships/out/{-list|&amp;|types}",
+  "properties" : "http://localhost:7474/db/data/node/30/properties",
+  "incoming_relationships" : "http://localhost:7474/db/data/node/30/relationships/in",
+  "create_relationship" : "http://localhost:7474/db/data/node/30/relationships",
+  "paged_traverse" : "http://localhost:7474/db/data/node/30/paged/traverse/{returnType}{?pageSize,leaseTime}",
+  "all_relationships" : "http://localhost:7474/db/data/node/30/relationships/all",
+  "incoming_typed_relationships" : "http://localhost:7474/db/data/node/30/relationships/in/{-list|&amp;|types}",
+  "data" : {
+    "sequence" : 1,
+    "name" : "Tobias"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/node/people/name/Tobias/30"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-get-or-create-unique-node-existing"></a>17.16.2. Get or create unique node (existing)</h3></div></div></div><p>Here,
+a node is not created but the existing unique node returned, since another node
+is indexed with the same data already. The node data returned is then that of the
+already existing node.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/node/people?uniqueness=get_or_create</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Peter",
+  "properties" : {
+    "name" : "Peter",
+    "sequence" : 2
+  }
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">200:</code></strong></span> <code class="literal">OK</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Location:</code></strong></span> <code class="literal">http://localhost:7474/db/data/index/node/people/name/Peter/25</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "outgoing_relationships" : "http://localhost:7474/db/data/node/25/relationships/out",
+  "labels" : "http://localhost:7474/db/data/node/25/labels",
+  "all_typed_relationships" : "http://localhost:7474/db/data/node/25/relationships/all/{-list|&amp;|types}",
+  "traverse" : "http://localhost:7474/db/data/node/25/traverse/{returnType}",
+  "self" : "http://localhost:7474/db/data/node/25",
+  "property" : "http://localhost:7474/db/data/node/25/properties/{key}",
+  "outgoing_typed_relationships" : "http://localhost:7474/db/data/node/25/relationships/out/{-list|&amp;|types}",
+  "properties" : "http://localhost:7474/db/data/node/25/properties",
+  "incoming_relationships" : "http://localhost:7474/db/data/node/25/relationships/in",
+  "create_relationship" : "http://localhost:7474/db/data/node/25/relationships",
+  "paged_traverse" : "http://localhost:7474/db/data/node/25/paged/traverse/{returnType}{?pageSize,leaseTime}",
+  "all_relationships" : "http://localhost:7474/db/data/node/25/relationships/all",
+  "incoming_typed_relationships" : "http://localhost:7474/db/data/node/25/relationships/in/{-list|&amp;|types}",
+  "data" : {
+    "sequence" : 1,
+    "name" : "Peter"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/node/people/name/Peter/25"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-create-a-unique-node-or-return-fail-create"></a>17.16.3. Create a unique node or return fail (create)</h3></div></div></div><p>Here, in case
+of an already existing node, an error should be returned. In this
+example, no existing indexed node is found and a new node is created.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/node/people?uniqueness=create_or_fail</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Tobias",
+  "properties" : {
+    "name" : "Tobias",
+    "sequence" : 1
+  }
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">201:</code></strong></span> <code class="literal">Created</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Location:</code></strong></span> <code class="literal">http://localhost:7474/db/data/index/node/people/name/Tobias/29</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "outgoing_relationships" : "http://localhost:7474/db/data/node/29/relationships/out",
+  "labels" : "http://localhost:7474/db/data/node/29/labels",
+  "all_typed_relationships" : "http://localhost:7474/db/data/node/29/relationships/all/{-list|&amp;|types}",
+  "traverse" : "http://localhost:7474/db/data/node/29/traverse/{returnType}",
+  "self" : "http://localhost:7474/db/data/node/29",
+  "property" : "http://localhost:7474/db/data/node/29/properties/{key}",
+  "outgoing_typed_relationships" : "http://localhost:7474/db/data/node/29/relationships/out/{-list|&amp;|types}",
+  "properties" : "http://localhost:7474/db/data/node/29/properties",
+  "incoming_relationships" : "http://localhost:7474/db/data/node/29/relationships/in",
+  "create_relationship" : "http://localhost:7474/db/data/node/29/relationships",
+  "paged_traverse" : "http://localhost:7474/db/data/node/29/paged/traverse/{returnType}{?pageSize,leaseTime}",
+  "all_relationships" : "http://localhost:7474/db/data/node/29/relationships/all",
+  "incoming_typed_relationships" : "http://localhost:7474/db/data/node/29/relationships/in/{-list|&amp;|types}",
+  "data" : {
+    "sequence" : 1,
+    "name" : "Tobias"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/node/people/name/Tobias/29"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-create-a-unique-node-or-return-fail-fail"></a>17.16.4. Create a unique node or return fail (fail)</h3></div></div></div><p>Here, in case
+of an already existing node, an error should be returned. In this
+example, an existing node indexed with the same data
+is found and an error is returned.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/node/people?uniqueness=create_or_fail</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Peter",
+  "properties" : {
+    "name" : "Peter",
+    "sequence" : 2
+  }
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">409:</code></strong></span> <code class="literal">Conflict</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "outgoing_relationships" : "http://localhost:7474/db/data/node/19/relationships/out",
+  "labels" : "http://localhost:7474/db/data/node/19/labels",
+  "all_typed_relationships" : "http://localhost:7474/db/data/node/19/relationships/all/{-list|&amp;|types}",
+  "traverse" : "http://localhost:7474/db/data/node/19/traverse/{returnType}",
+  "self" : "http://localhost:7474/db/data/node/19",
+  "property" : "http://localhost:7474/db/data/node/19/properties/{key}",
+  "outgoing_typed_relationships" : "http://localhost:7474/db/data/node/19/relationships/out/{-list|&amp;|types}",
+  "properties" : "http://localhost:7474/db/data/node/19/properties",
+  "incoming_relationships" : "http://localhost:7474/db/data/node/19/relationships/in",
+  "create_relationship" : "http://localhost:7474/db/data/node/19/relationships",
+  "paged_traverse" : "http://localhost:7474/db/data/node/19/paged/traverse/{returnType}{?pageSize,leaseTime}",
+  "all_relationships" : "http://localhost:7474/db/data/node/19/relationships/all",
+  "incoming_typed_relationships" : "http://localhost:7474/db/data/node/19/relationships/in/{-list|&amp;|types}",
+  "data" : {
+    "sequence" : 1,
+    "name" : "Peter"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/node/people/name/Peter/19"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-get-or-create-unique-relationship-create"></a>17.16.5. Get or create unique relationship (create)</h3></div></div></div><p>Create a unique relationship in an index.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/relationship/knowledge/?uniqueness=get_or_create</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Tobias",
+  "start" : "http://localhost:7474/db/data/node/314",
+  "end" : "http://localhost:7474/db/data/node/315",
+  "type" : "knowledge"
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">201:</code></strong></span> <code class="literal">Created</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Location:</code></strong></span> <code class="literal">http://localhost:7474/db/data/index/relationship/knowledge/name/Tobias/191</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "start" : "http://localhost:7474/db/data/node/314",
+  "property" : "http://localhost:7474/db/data/relationship/191/properties/{key}",
+  "self" : "http://localhost:7474/db/data/relationship/191",
+  "properties" : "http://localhost:7474/db/data/relationship/191/properties",
+  "type" : "knowledge",
+  "end" : "http://localhost:7474/db/data/node/315",
+  "data" : {
+    "name" : "Tobias"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/relationship/knowledge/name/Tobias/191"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-get-or-create-unique-relationship-existing"></a>17.16.6. Get or create unique relationship (existing)</h3></div></div></div><p>Here, in case
+of an already existing relationship, the sent data is ignored and the
+existing relationship returned.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/relationship/rels?uniqueness=get_or_create</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Peter",
+  "start" : "http://localhost:7474/db/data/node/318",
+  "end" : "http://localhost:7474/db/data/node/319",
+  "type" : "KNOWS"
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">200:</code></strong></span> <code class="literal">OK</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "start" : "http://localhost:7474/db/data/node/316",
+  "property" : "http://localhost:7474/db/data/relationship/192/properties/{key}",
+  "self" : "http://localhost:7474/db/data/relationship/192",
+  "properties" : "http://localhost:7474/db/data/relationship/192/properties",
+  "type" : "KNOWS",
+  "end" : "http://localhost:7474/db/data/node/317",
+  "data" : {
+  },
+  "indexed" : "http://localhost:7474/db/data/index/relationship/rels/name/Peter/192"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-create-a-unique-relationship-or-return-fail-create"></a>17.16.7. Create a unique relationship or return fail (create)</h3></div></div></div><p>Here, in case
+of an already existing relationship, an error should be returned. In this
+example, no existing relationship is found and a new relationship is created.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/relationship/rels?uniqueness=create_or_fail</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Tobias",
+  "start" : "http://localhost:7474/db/data/node/326",
+  "end" : "http://localhost:7474/db/data/node/327",
+  "type" : "KNOWS"
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">201:</code></strong></span> <code class="literal">Created</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Location:</code></strong></span> <code class="literal">http://localhost:7474/db/data/index/relationship/rels/name/Tobias/195</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "start" : "http://localhost:7474/db/data/node/326",
+  "property" : "http://localhost:7474/db/data/relationship/195/properties/{key}",
+  "self" : "http://localhost:7474/db/data/relationship/195",
+  "properties" : "http://localhost:7474/db/data/relationship/195/properties",
+  "type" : "KNOWS",
+  "end" : "http://localhost:7474/db/data/node/327",
+  "data" : {
+    "name" : "Tobias"
+  },
+  "indexed" : "http://localhost:7474/db/data/index/relationship/rels/name/Tobias/195"
+}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="rest-api-create-a-unique-relationship-or-return-fail-fail"></a>17.16.8. Create a unique relationship or return fail (fail)</h3></div></div></div><p>Here, in case
+of an already existing relationship, an error should be returned. In this
+example, an existing relationship is found and an error is returned.</p><p><span class="emphasis"><em>Example request</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">POST</code></strong></span>  <code class="literal">http://localhost:7474/db/data/index/relationship/rels?uniqueness=create_or_fail</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Accept:</code></strong></span> <code class="literal">application/json</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "key" : "name",
+  "value" : "Peter",
+  "start" : "http://localhost:7474/db/data/node/308",
+  "end" : "http://localhost:7474/db/data/node/309",
+  "type" : "KNOWS"
+}</pre><p><span class="emphasis"><em>Example response</em></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+<span class="strong"><strong><code class="literal">409:</code></strong></span> <code class="literal">Conflict</code>
+</li><li class="listitem">
+<span class="strong"><strong><code class="literal">Content-Type:</code></strong></span> <code class="literal">application/json</code>
+</li></ul></div><pre class="programlisting brush: javascript">{
+  "extensions" : {
+  },
+  "start" : "http://localhost:7474/db/data/node/306",
+  "property" : "http://localhost:7474/db/data/relationship/188/properties/{key}",
+  "self" : "http://localhost:7474/db/data/relationship/188",
+  "properties" : "http://localhost:7474/db/data/relationship/188/properties",
+  "type" : "KNOWS",
+  "end" : "http://localhost:7474/db/data/node/307",
+  "data" : {
+  },
+  "indexed" : "http://localhost:7474/db/data/index/relationship/rels/name/Peter/188"
+}</pre></div></div><HR xmlns=""></HR><a xmlns="" href="ln-idp1118768.html"><p xmlns="http://www.w3.org/1999/xhtml" class="copyright">Copyright © 2013 Neo Technology</p></a><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="rest-api-indexes.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="rest-api.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="rest-api-auto-indexes.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
