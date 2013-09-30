@@ -1,6 +1,16 @@
 Neo4j 2.0.0-M01
 =======================================
 
+Banco de Dados Neo4j usado no Projeto SistemaOntologia, que consiste em um Catálogo Online
+baseado em Ontologia para Bibliotecas.
+
+Esse banco contém dados sobre a ementa do curso de Tecnologia em Sistemas para Internet do ISFP.
+Projeto em Java: https://github.com/FilipeNavas/SistemaOntologia
+
+Desenvolvido por Willian César da Silva
+
+=========================================
+
 Welcome to Neo4j release 2.0.0-M01, a high-performance graph database.
 This is the community distribution of Neo4j, including everything you need to
 start building applications that can model, persist and explore graph-like data.
